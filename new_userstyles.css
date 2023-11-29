@@ -1,0 +1,110 @@
+body {
+  font-family: 'Arial', sans-serif; 
+  background: #f4f4f4; 
+  margin: 0;
+  padding: 0;
+  padding-top: 40px; /* Added to account for the fixed top bar height */
+
+}
+
+#top-bar {
+  background-color: #333;
+  height: 40px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.side-panel {
+  background: #333;
+  width: 200px;
+  height: 100vh;
+  float: left;
+  padding-top: 20px; 
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #555;
+}
+
+.sidebar-menu li a i {
+  margin-right: 10px;
+}
+
+.sidebar-menu li i {
+  width: 20px; /* Ensures that the icon has space to display */
+  min-width: 20px; /* Ensures that the icon does not shrink */
+  text-align: center; /* Centers the icon */
+  margin-right: 8px; /* Adds some space between the icon and the text */
+}
+
+
+.main-content {
+  margin-left: 200px; /* This should be the same as the side-panel width */
+  padding: 20px; 
+  background: #fff; 
+}
+
+h1 {
+  font-size: 24px; 
+  color: #333; 
+}
+
+.form-group {
+  margin-bottom: 20px; /* Spacing between form groups */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px; /* Spacing between label and input */
+  color: #333; 
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%; /* Full width */
+  padding: 10px; 
+  margin-bottom: 10px; /* Spacing between inputs */
+  border: 1px solid #ddd; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+  border-color: #5b9bd5; /* Focus color */
+  outline: none;
+}
+
+button.save-button {
+  background-color: #007bff; /* Button background */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px; 
+}
+
+button.save-button:hover {
+  background-color: #0056b3; /* Darker background on hover */
+}

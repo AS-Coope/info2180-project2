@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["email"] = $email;
             
             // Redirect user to Dashboard
-            header("Location: ----");
+            header("Location: new_user.html");
         } else {
             // Display an error message if password is not valid
             echo "The password you entered was not valid.";
