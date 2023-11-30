@@ -27,12 +27,12 @@ body {
   }
   
   .logo-container .logo {
-    height: 30px; /* Or any other size that fits well */
+    height: 30px; 
     margin-right: 10px;
   }
   
   .logo-container .top-bar-title {
-    font-size: 20px; /* Or the size you prefer */
+    font-size: 20px; 
   }
   
 

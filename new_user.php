@@ -85,7 +85,7 @@ if (!isset($_SESSION['id'])) {
             passwordInput.setAttribute('type', type);
     
             // Toggle the eye icon
-            this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️'; // Update with appropriate icons
+            this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️'; 
         });
     </script>
 </body>
