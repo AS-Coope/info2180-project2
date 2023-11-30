@@ -105,3 +105,24 @@ footer {
         padding: 20px;
     }
 }
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+input[type="password"] {
+    flex-grow: 1; /* Makes the input take the remaining space */
+    padding-right: 30px; /* Adds padding to prevent text from going under the icon */
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000; /* Change as needed */
+    font-size: 18px; /* Adjust size as needed */
+}

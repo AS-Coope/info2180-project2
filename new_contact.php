@@ -102,6 +102,7 @@ if (!isset($_SESSION['id'])) {
                 </div>
             </div>
             <button type="submit" class="save-button">Save</button>
+            <div id="save-message"></div> <!-- Placeholder for success message -->
         </form>
     </div>
 
@@ -118,15 +119,16 @@ if (!isset($_SESSION['id'])) {
                 // Clear the form fields
                 document.getElementById('new-contact-form').reset();
                 // Display the success message
-                document.getElementById('form-response').innerText = 'Contact saved successfully.';
+                document.getElementById('save-message').innerText = 'Contact saved successfully.';
             } else {
                 // Handle errors here
-                document.getElementById('form-response').innerText = 'Error saving contact.';
+                document.getElementById('save-message').innerText = 'Error saving contact.';
             }
         };
 
         xhr.send(formData);
     });
+
 </script>
 
 </body>

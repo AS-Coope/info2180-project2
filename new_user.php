@@ -56,7 +56,7 @@ if (!isset($_SESSION['id'])) {
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Email address" required autocomplete="email">
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required autocomplete="email">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
