@@ -102,21 +102,21 @@ $conn->close();
         <p id="Assigned_to"><?php echo htmlspecialchars($contact['assigned_firstname'] . ' ' . $contact['assigned_lastname']); ?></p>
     </div>
     </div>
-        <div class="contact-details-notes">
+    <div class="contact-details-notes">
             <h2>Notes</h2>
-            <?php while($note = $notesResult->fetch_assoc()): ?>
-                <div class="note">
-                    <p><?php echo htmlspecialchars($note['author_name']); ?></p>
-                    <p><?php echo htmlspecialchars($note['comment']); ?></p>
-                    <p><?php echo htmlspecialchars($note['created_at']); ?></p>
-                </div>
-            <?php endwhile; ?>
+            <div id="notes-container"> <!-- Defined container for new notes -->
+                <?php while($note = $notesResult->fetch_assoc()): ?>
+                    <div class="note">
+                        <p><strong><?php echo htmlspecialchars($note['author_name']); ?></strong> <em><?php echo htmlspecialchars($note['created_at']); ?></em></p>
+                        <p><?php echo htmlspecialchars($note['comment']); ?></p>
+                    </div>
+                <?php endwhile; ?>
+            </div>
             <form id="add-note-form">
                 <input type="hidden" name="contactId" id="contact-id" value="<?php echo $contactId; ?>" />
                 <textarea name="comment" id="note-comment" placeholder="Add a note about <?php echo htmlspecialchars($contact['firstname']); ?>"></textarea>
                 <button type="submit">Add Note</button>
             </form>
-
         </div>
     </div>
 
@@ -159,41 +159,42 @@ $conn->close();
 
 
         document.getElementById('add-note-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var comment = document.getElementById('note-comment').value;
-            var contactId = document.getElementById('contact-id').value;
+    e.preventDefault();
+    var comment = document.getElementById('note-comment').value;
+    var contactId = document.getElementById('contact-id').value;
 
-            if (comment.trim() === '') {
-                alert('Please enter a note.');
-                return;
+    if (comment.trim() === '') {
+        alert('Please enter a note.');
+        return;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'add_note.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        console.log(xhr.responseText);  // Log the response text
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if(response.success) {
+                var notesContainer = document.getElementById('notes-container');
+                var newNoteDiv = document.createElement('div');
+                newNoteDiv.className = 'note';
+                newNoteDiv.innerHTML = `
+                    <p><strong>${response.authorName}</strong> <em>${response.createdAt}</em></p>
+                    <p>${comment}</p>
+                `;
+                notesContainer.appendChild(newNoteDiv); // Append to the end of the container
+                document.getElementById('note-comment').value = '';
+            } else {
+                alert(response.error);
             }
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'add_note.php', true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if(response.success) {
-                        var notesContainer = document.getElementById('notes-container');
-                        var newNoteDiv = document.createElement('div');
-                        newNoteDiv.className = 'note';
-                        newNoteDiv.innerHTML = `
-                            <p><strong>${response.authorName}</strong> <em>${response.createdAt}</em></p>
-                            <p>${comment}</p>
-                        `;
-                        notesContainer.appendChild(newNoteDiv); // Append to the end of the container
-                        document.getElementById('note-comment').value = '';
-                    } else {
-                        alert(response.error);
-                    }
-                } else {
-                    alert('Error adding note.');
-                }
-            };
-            var data = 'contactId=' + encodeURIComponent(contactId) + '&comment=' + encodeURIComponent(comment);
-            xhr.send(data);
-        });
+        } else {
+            alert('Error adding note.');
+        }
+    };
+    var data = 'contactId=' + encodeURIComponent(contactId) + '&comment=' + encodeURIComponent(comment);
+    xhr.send(data);
+});
 
 
 

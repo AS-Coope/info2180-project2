@@ -32,6 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["id"] = $user['id'];
             $_SESSION["email"] = $email;
             $_SESSION["role"] = $user['role']; // Store the role in the session
+            $_SESSION["username"] = $user['firstname'] . ' ' . $user['lastname'];
+
             
             // Redirect user to Dashboard
             header("Location: dashboard.php");

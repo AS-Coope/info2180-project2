@@ -29,8 +29,9 @@ if (isset($_POST['contactId'], $_POST['comment']) && !empty($_POST['comment'])) 
             $response = [
                 'success' => true,
                 'authorName' => $_SESSION['username'], 
-                'createdAt' => date('Y-m-d H:i:s') 
+                'createdAt' => date('Y-m-d H:i:s')
             ];
+            
             // Commit transaction
             $conn->commit();
         } else {
