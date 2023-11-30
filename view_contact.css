@@ -1,0 +1,194 @@
+body {
+    font-family: 'Arial', sans-serif; 
+    background: #f4f4f4; 
+    margin: 0;
+    padding: 0;
+    padding-top: 40px; /* Added to account for the fixed top bar height */
+  
+  }
+
+  #top-bar {
+    background-color: #333;
+    color: white;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-container .logo {
+    height: 30px; /* Or any other size that fits well */
+    margin-right: 10px;
+  }
+  
+  .logo-container .top-bar-title {
+    font-size: 20px; /* Or the size you prefer */
+  }
+  
+
+
+  .side-panel {
+    background: #333;
+    width: 200px;
+    height: 100vh;
+    float: left;
+    padding-top: 20px; 
+  }
+  
+  .sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar-menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-menu li a:hover {
+    background-color: #555;
+  }
+  
+  .sidebar-menu li a i {
+    margin-right: 10px;
+  }
+  
+  .sidebar-menu li i {
+    width: 20px; /* Ensures that the icon has space to display */
+    min-width: 20px; /* Ensures that the icon does not shrink */
+    text-align: center; /* Centers the icon */
+    margin-right: 8px; /* Adds some space between the icon and the text */
+  }
+
+
+
+
+.contact-details-container {
+    margin-left: 200px;
+    padding: 20px;
+    background: white;
+    min-height: calc(100vh - 40px);
+    box-sizing: border-box;
+}
+
+.contact-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-details-header h1 {
+    margin: 0;
+    color: #333;
+    flex: 1; /* Allows the title to take up the available space */
+}
+
+.contact-details-actions {
+    display: flex;
+    gap: 10px; /* Adds space between buttons */
+    flex-shrink: 0; /* Prevents the buttons from shrinking */
+}
+
+/* If you want the buttons to be vertically centered with the title, make sure the title container is a flex container as well */
+.contact-details-header > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-details-body p {
+    margin: 10px 0;
+    color: #666;
+}
+
+.contact-details-actions {
+    margin: 20px 0;
+    
+}
+
+.contact-details-actions button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.contact-details-actions button#switch-type {
+    background-color: #f0ad4e;
+}
+
+.contact-details-actions button:hover {
+    opacity: 0.9;
+}
+
+.contact-details-notes {
+    background: #f9f9f9;
+    padding: 20px;
+}
+
+.contact-details-notes h2 {
+    margin-top: 0;
+}
+
+.note {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 4px solid #5cb85c;
+}
+
+#add-note-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#add-note-form button {
+    background-color: #337ab7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add-note-form button:hover {
+    background-color: #286090;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .side-panel {
+        width: 100%;
+        position: relative;
+    }
+
+    .contact-details-container {
+        margin-left: 0;
+    }
+}
+
