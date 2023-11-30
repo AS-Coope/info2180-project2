@@ -1,9 +1,17 @@
+
 <?php
 session_start();
 require 'db.php';
 
 if (!isset($_GET['id'])) {
     die("Contact ID is required.");
+}
+
+// Check if the user is not logged in (adjust 'user_id' to your session variable)
+if (!isset($_SESSION['id'])) {
+    // User is not logged in, redirect to login page
+    header("Location: login.html");
+    exit();
 }
 
 $contactId = $_GET['id'];

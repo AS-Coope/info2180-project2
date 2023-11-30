@@ -94,7 +94,7 @@ margin-bottom: 20px; /* Space below the grid container */
   margin-left: 200px; /* This should be the same as the side-panel width */
   padding: 20px; 
   background: #fff; 
-  max-height: 80vh; /* Maximum height to match the viewport height */
+  max-height: calc(100vh - 80px);
   overflow-y: auto; /* Enables vertical scrolling if content exceeds max height */
 }
 

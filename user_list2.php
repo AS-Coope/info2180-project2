@@ -1,3 +1,14 @@
+<?php
+session_start(); // Start the session
+
+// Check if the user is not logged in (adjust 'user_id' to your session variable)
+if (!isset($_SESSION['id'])) {
+    // User is not logged in, redirect to login page
+    header("Location: login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +55,7 @@
             </thead>
             <tbody>
                 <?php
-                    session_start();
+
                     require 'db.php';
 
                     // Check if the user is logged in and is an admin

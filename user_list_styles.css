@@ -75,6 +75,9 @@ body {
     margin-left: 0px;
     padding: 20px;
     background: #fff;
+    
+    overflow-y: auto; /* Enables vertical scrolling if content exceeds max height */
+
 }
 
 /* Main user table container */
@@ -82,8 +85,10 @@ body {
   margin-left: 200px; /* Align with the side panel */
   padding: 20px;
   background: #fff;
-  max-height: 100vh; /* Maximum height to match the viewport height */
   overflow-y: auto; /* Enables vertical scrolling if content exceeds max height */
+  height: calc(100vh - 150px);
+
+
 }
 
 
