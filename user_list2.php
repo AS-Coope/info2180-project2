@@ -5,7 +5,6 @@
     <title>User List - Dolphin CRM</title>
     <link rel="stylesheet" href="user_list_styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Other links and scripts as needed -->
 </head>
 <body>
     <div id="top-bar"></div> <!-- Horizontal bar at the top -->
@@ -43,14 +42,15 @@
                     session_start();
                     require 'db.php';
 
-                                        // Check if the 'role' session variable is set and if it is 'Admin'
+                    // Check if the user is logged in and is an admin
                     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
-                        // If not admin or not logged in, redirect to the home page or a login page
-                        header("Location: home.html");
-                        exit(); // Make sure that code doesn't keep running after redirect
+                        // Display an error message and stop further execution
+                        echo "<p>Access Denied. You must be an admin to view this page.</p>";
+                        exit;
                     }
+
                     // SQL query to fetch all users
-                    $sql = "SELECT firstname, lastname, email, role, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i') as created_at FROM users"; // Adjust 'users' to your actual table name
+                    $sql = "SELECT firstname, lastname, email, role, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i') as created_at FROM users"; 
                     $result = $conn->query($sql);
 
                     // Check if there are any results
@@ -77,6 +77,5 @@
     </div>
 
 
-    <!-- Additional scripts can be added here -->
 </body>
 </html>
