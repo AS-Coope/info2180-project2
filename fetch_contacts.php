@@ -2,6 +2,13 @@
 session_start();
 require 'db.php';
 
+// Check if the user is not logged in (adjust 'user_id' to your session variable)
+if (!isset($_SESSION['id'])) {
+    // User is not logged in, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
 $filterType = isset($_GET['filter']) ? $_GET['filter'] : 'all';
 $currentUserId = $_SESSION['id'];  // Ensure you are using the correct session variable
 

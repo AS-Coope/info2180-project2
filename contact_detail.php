@@ -7,10 +7,10 @@ if (!isset($_GET['id'])) {
     die("Contact ID is required.");
 }
 
-// Check if the user is not logged in (adjust 'user_id' to your session variable)
+// Check if the user is not logged in 
 if (!isset($_SESSION['id'])) {
     // User is not logged in, redirect to login page
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -42,13 +42,13 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <title>Contact Details - Dolphin CRM</title>
-    <link rel="stylesheet" href="view_contact.css">
+    <link rel="stylesheet" href="assets/css/view_contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <div id="top-bar">
     <div class="logo-container">
-        <img src="dolphin.png" alt="Dolphin CRM Logo" class="logo">
+        <img src="assets/images/dolphin.png" alt="Dolphin CRM Logo" class="logo">
         <span class="top-bar-title">Dolphin CRM</span>
     </div>
 </div>
@@ -56,7 +56,7 @@ $conn->close();
         <ul class="sidebar-menu">
             <li><a href="dashboard.php"><i class="fas fa-home"></i> Home</a></li>
             <li class="active"><a href="new_contact.php"><i class="fas fa-address-card"></i> New Contact</a></li>
-            <li><a href="user_list2.php"><i class="fas fa-users"></i> Users</a></li>
+            <li><a href="user_list.php"><i class="fas fa-users"></i> Users</a></li>
             <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>    
@@ -65,7 +65,7 @@ $conn->close();
         
     <div class="contact-details-header">
     <div>
-    <img src="blank.png" alt="Profile Picture" class="contact-image" />
+    <img src="assets/images/blank.png" alt="Profile Picture" class="contact-image" />
         <div>
             <h1><?php echo htmlspecialchars($contact['title'] . ' ' . $contact['firstname'] . ' ' . $contact['lastname']); ?></h1>
             <p>Created on <?php echo htmlspecialchars($contact['created_at']); ?> by <?php echo htmlspecialchars($contact['created_by_name']); ?></p>

@@ -2,55 +2,60 @@
 session_start();
 require 'db.php'; // Include database connection
 
-// Sanitize user input
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
+// Check if the user is already logged in, if yes then redirect to dashboard
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    header("Location: dashboard.php");
+    exit;
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize user input
-    $email = test_input($_POST["email"]);
-    $password = test_input($_POST["password"]);
-    
-    // Prepare and bind
-    $stmt = $conn->prepare("SELECT id, firstname, lastname, password, role FROM Users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-
-    // Execute the query
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        // Check if the password matches
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            // Password is correct, so start a new session
-            $_SESSION["loggedin"] = true;
-            $_SESSION["id"] = $user['id'];
-            $_SESSION["email"] = $email;
-            $_SESSION["role"] = $user['role']; // Store the role in the session
-            $_SESSION["username"] = $user['firstname'] . ' ' . $user['lastname'];
-
-            
-            // Redirect user to Dashboard
-            header("Location: dashboard.php");
-            exit;
-        } else {
-            // Display an error message if password is not valid
-            echo "The password you entered was not valid.";
-        }
-    } else {
-        // Display an error message if email doesn't exist
-        echo "No account found with that email.";
-    }
-
-    // Close statement
-    $stmt->close();
-}
-
-// Close connection
-$conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="assets/css/loginstyles.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo-container">
+            <img src="assets/images/dolphin.png" alt="Dolphin CRM Logo" class="logo">
+        </div>
+        <div class="title-container">
+            <span>Dolphin CRM</span>
+        </div>
+    </div>
+    <div id="login-container">
+    <form id="login-form" action="handle_login.php" method="post">
+    <h1>Login</h1>
+            <div class="input-container">
+                <input type="email" id="email" name="email" placeholder="Email address" required>
+            </div>
+            <div class="input-container password-container">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span id="toggle-password" class="eye-icon">👁️</span> <!-- Eye icon -->
+            </div>
+            <div class="input-container">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <footer>
+            <p>&copy; 2022 Dolphin CRM</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('toggle-password').addEventListener('click', function (e) {
+            // Toggle the type attribute using getAttribute() and setAttribute()
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+    
+            // Toggle the eye icon
+            this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️'; // Update with appropriate icons
+        });
+    </script>
+    
+</body>
+</html>

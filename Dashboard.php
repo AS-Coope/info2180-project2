@@ -4,7 +4,7 @@ session_start(); // Start the session
 // Check if the user is not logged in (adjust 'user_id' to your session variable)
 if (!isset($_SESSION['id'])) {
     // User is not logged in, redirect to login page
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 ?>
@@ -13,13 +13,13 @@ if (!isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - Dolphin CRM</title>
-    <link rel="stylesheet" href="dashboard_styles.css">
+    <link rel="stylesheet" href="assets/css/dashboard_styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <div id="top-bar">
     <div class="logo-container">
-        <img src="dolphin.png" alt="Dolphin CRM Logo" class="logo">
+        <img src="assets/images/dolphin.png" alt="Dolphin CRM Logo" class="logo">
         <span class="top-bar-title">Dolphin CRM</span>
     </div>
 </div>
@@ -27,7 +27,7 @@ if (!isset($_SESSION['id'])) {
         <ul class="sidebar-menu">
             <li><a href="dashboard.php"><i class="fas fa-home"></i> Home</a></li>
             <li class="active"><a href="new_contact.php"><i class="fas fa-address-card"></i> New Contact</a></li>
-            <li><a href="user_list2.php"><i class="fas fa-users"></i> Users</a></li>
+            <li><a href="user_list.php"><i class="fas fa-users"></i> Users</a></li>
             <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>    

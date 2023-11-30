@@ -5,15 +5,15 @@ require 'db.php';
 
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
-    // User is not logged in, redirect to login page
-    header("Location: user_list2.php");
+    //User not admin, back to user_list
+    header("Location: user_list.php");
     exit();
 }
 
 // Check if the user is not logged in
 if (!isset($_SESSION['id'])) {
     // User is not logged in, redirect to login page
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -24,13 +24,13 @@ if (!isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Add New User - Dolphin CRM</title>
-    <link rel="stylesheet" href="new_userstyles.css">
+    <link rel="stylesheet" href="assets/css/new_userstyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <div id="top-bar">
         <div class="logo-container">
-            <img src="dolphin.png" alt="Dolphin CRM Logo" class="logo">
+            <img src="assets/images/dolphin.png" alt="Dolphin CRM Logo" class="logo">
             <span class="top-bar-title">Dolphin CRM</span>
         </div>
     </div>
@@ -38,7 +38,7 @@ if (!isset($_SESSION['id'])) {
         <ul class="sidebar-menu">
             <li><a href="dashboard.php"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="new_contact.php"><i class="fas fa-address-card"></i> New Contact</a></li>
-            <li class="active"><a href="user_list2.php"><i class="fas fa-users"></i> Users</a></li>
+            <li class="active"><a href="user_list.php"><i class="fas fa-users"></i> Users</a></li>
             <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </div>    
@@ -76,7 +76,7 @@ if (!isset($_SESSION['id'])) {
         </div>
         
     </div>
-    <script src="new_user.js"></script>
+    <script src="assets/js/new_user.js"></script>
     <script>
         document.getElementById('toggle-password').addEventListener('click', function () {
             // Toggle the type attribute of the password field
