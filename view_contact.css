@@ -106,7 +106,6 @@ body {
     flex-shrink: 0; /* Prevents the buttons from shrinking */
 }
 
-/* If you want the buttons to be vertically centered with the title, make sure the title container is a flex container as well */
 .contact-details-header > div {
     display: flex;
     flex-direction: column;
