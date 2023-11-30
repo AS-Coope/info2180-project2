@@ -36,7 +36,7 @@ if (!isset($_SESSION['id'])) {
     <!-- Fixed header container -->
 <div class="fixed-header">
     <h2>User List</h2>
-    <button type="button" class="add-user-button" onclick="location.href='new_user.html'">+ Add User</button>
+    <button type="button" class="add-user-button" onclick="location.href='new_user.php'">+ Add User</button>
 </div>
 
 <!-- Scrollable table container -->
