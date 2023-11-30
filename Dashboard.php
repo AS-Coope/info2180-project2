@@ -74,15 +74,24 @@
     </div>
 
     <script>
-        function filterContacts(filter) {
-            // Implement filtering logic here
-            console.log('Filtering contacts by: ' + filter);
-        }
-        
-        function viewContact(contactId) {
-            // Placeholder function for viewing contact details
-            console.log('Viewing details for contact ID: ' + contactId);
-        }
-    </script>
+    function filterContacts(filter) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'fetch_contacts.php?filter=' + filter, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Update the table body with the filtered contacts
+                document.querySelector('.contact-table tbody').innerHTML = xhr.responseText;
+            } else {
+                console.error('An error occurred fetching the contacts.');
+            }
+        };
+        xhr.send();
+    }
+
+    function viewContact(contactId) {
+        window.location.href = 'contact_detail.php?id=' + contactId;
+    }
+</script>
+
 </body>
 </html>
