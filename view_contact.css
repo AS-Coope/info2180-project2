@@ -112,6 +112,11 @@ body {
 .form-field p {
   color: black; /* Black for text */
   margin: 0; /* Adjust as needed */
+  
+.contact-details-header > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
