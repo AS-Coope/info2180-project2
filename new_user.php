@@ -48,15 +48,15 @@ if (!isset($_SESSION['id'])) {
             <div class="form-container">
                 <div class="form-group">
                     <label for="firstname">First Name</label>
-                    <input type="text" id="firstname" name="firstname" required>
+                    <input type="text" id="firstname" name="firstname" required pattern="[A-Za-z ]+" title="Only letters and spaces are allowed">
                 </div>
                 <div class="form-group">
                     <label for="lastname">Last Name</label>
-                    <input type="text" id="lastname" name="lastname" required>
+                    <input type="text" id="lastname" name="lastname" required pattern="[A-Za-z ]+" title="Only letters and spaces are allowed">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required autocomplete="email">
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
                 </div>
                 <div class="form-group password-container">
                     <label for="password">Password</label>
@@ -72,8 +72,9 @@ if (!isset($_SESSION['id'])) {
                 </div>
                 <button type="button" id="submit-button" class="save-button">Save</button>
             </form>
+            <div id="form-response"></div> <!-- Place to show the response message -->
         </div>
-        <div id="form-response"></div> <!-- Place to show the response message -->
+        
     </div>
     <script src="new_user.js"></script>
     <script>

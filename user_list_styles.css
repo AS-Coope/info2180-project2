@@ -86,7 +86,7 @@ body {
   padding: 20px;
   background: #fff;
   overflow-y: auto; /* Enables vertical scrolling if content exceeds max height */
-  height: calc(100vh - 150px);
+  height: calc(100vh - 180px);
 
 
 }
@@ -154,12 +154,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 40px; /* Adds 40px padding to the top of the fixed-header container */
+  padding-top: 60px; /* Adds 40px padding to the top of the fixed-header container */
   color: #333; 
 
 }
 
 .scrollable-table {
-  margin-top: 70px; /* Adjust this value so it's below your fixed header */
+  margin-top: 100px; /* Adjust this value so it's below your fixed header */
 }
 
