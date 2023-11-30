@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare("INSERT INTO Contacts (title, firstname, lastname, email, telephone, company, type, assigned_to, created_by, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
     
     // Bind the parameters to the SQL query
-    $stmt->bind_param("ssssssiii", $title, $firstname, $lastname, $email, $telephone, $company, $type, $assigned_to, $created_by);
+    $stmt->bind_param("sssssssii", $title, $firstname, $lastname, $email, $telephone, $company, $type, $assigned_to, $created_by);
     
     // Execute the query
     if ($stmt->execute()) {
