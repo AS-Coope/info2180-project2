@@ -43,6 +43,7 @@ body {
     height: 100vh;
     float: left;
     padding-top: 20px; 
+    max-height: calc(100vh - 60px);
   }
   
   .sidebar-menu {
@@ -84,6 +85,7 @@ body {
     background: white;
     min-height: calc(100vh - 40px);
     box-sizing: border-box;
+    
 }
 
 
@@ -125,6 +127,8 @@ body {
 
 
 .contact-details-notes {
+  max-height: calc(100vh - 400px);
+  overflow-y: auto;
     background: #f9f9f9;
     padding: 20px;
 }
@@ -178,8 +182,8 @@ body {
 
 .contact-details-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* Aligns items to the top */
+  align-items: flex-start; /* Align items to the top */
+  justify-content: space-between; /* Space between the left and right sections */
   border-bottom: 1px solid #ccc;
   padding-bottom: 20px;
   margin-bottom: 20px;
@@ -188,13 +192,12 @@ body {
 .contact-details-header > div {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  flex-grow: 1; /* Ensures this container takes up available space, pushing buttons to the right */
+  align-items: flex-start; /* Align text to the start (left) */
 }
 
 .contact-details-header div:first-child {
-  flex-direction: row; /* Aligns the image and text side by side */
-  align-items: center; /* Centers them vertically */
+  flex-direction: row; /* Horizontal layout */
+  align-items: center; /* Vertically center the image and text */
 }
 
 .contact-details-header div:first-child img {
@@ -205,20 +208,23 @@ body {
 .contact-details-header h1, .contact-details-header p {
   margin: 0;
   color: #333;
+  text-align: left; /* Align text to the left */
 }
 
 .contact-details-actions {
   display: flex;
-  gap: 10px; /* Adds space between buttons */
+  gap: 10px; /* Space between buttons */
+  align-self: start; /* Align buttons to the top of the container */
 }
 
 .contact-details-actions button {
   background-color: #5cb85c;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 10px;
   border-radius: 4px;
   cursor: pointer;
+  width: 200px;
 }
 
 .contact-details-actions button#switch-type {
@@ -233,4 +239,20 @@ body {
   width: 50px; 
   height: auto; 
   border-radius: 50%; 
+}
+
+.contact-details-actions button#assign-to-me {
+  background-image: url('hand.png'); 
+  background-repeat: no-repeat;
+  background-position: center left; 
+  background-size: 20px 20px; 
+  padding-left: 10px; 
+}
+
+.contact-details-actions button#switch-type {
+  background-image: url('switch.png'); 
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: 20px 20px;
+  padding-left: 20px;
 }

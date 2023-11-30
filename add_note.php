@@ -8,27 +8,50 @@ if (isset($_POST['contactId'], $_POST['comment']) && !empty($_POST['comment'])) 
     $comment = trim($_POST['comment']);
     $createdBy = $_SESSION['id']; 
 
-    // Sanitize and prepare the SQL statement
-    $comment = $conn->real_escape_string($comment);
+    // Begin transaction
+    $conn->begin_transaction();
 
-    // Insert the note into the database
+    // Sanitize and prepare the SQL statement for inserting note
+    $comment = $conn->real_escape_string($comment);
     $stmt = $conn->prepare("INSERT INTO Notes (contact_id, comment, created_by, created_at) VALUES (?, ?, ?, NOW())");
     $stmt->bind_param("isi", $contactId, $comment, $createdBy);
     $stmt->execute();
 
-    // After inserting the note successfully
+    // Check if note insertion was successful
     if ($stmt->affected_rows > 0) {
-        $response = [
-            'success' => true,
-            'authorName' => $_SESSION['username'], 
-            'createdAt' => date('Y-m-d H:i:s') 
-        ];
+        // Update the updated_at time in Contacts table
+        $updateStmt = $conn->prepare("UPDATE Contacts SET updated_at = NOW() WHERE id = ?");
+        $updateStmt->bind_param("i", $contactId);
+        $updateStmt->execute();
+
+        // Check if Contacts table was updated successfully
+        if ($updateStmt->affected_rows > 0) {
+            $response = [
+                'success' => true,
+                'authorName' => $_SESSION['username'], 
+                'createdAt' => date('Y-m-d H:i:s') 
+            ];
+            // Commit transaction
+            $conn->commit();
+        } else {
+            $response = [
+                'success' => false,
+                'error' => 'Failed to update contact'
+            ];
+            // Rollback transaction
+            $conn->rollback();
+        }
+
+        $updateStmt->close();
     } else {
         $response = [
             'success' => false,
             'error' => 'Failed to add note'
         ];
+        // Rollback transaction
+        $conn->rollback();
     }
+
     echo json_encode($response);
 
     $stmt->close();

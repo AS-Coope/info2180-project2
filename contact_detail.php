@@ -73,10 +73,13 @@ $conn->close();
         </div>
     </div>
     <div class="contact-details-actions">
-        <button id="assign-to-me" onclick="assignToMe(<?php echo $contactId; ?>, <?php echo $currentUserId; ?>)">Assign to me</button>
-        <button id="switch-type" onclick="switchContactType(<?php echo $contactId; ?>, this)" data-current-type="<?php echo $contact['type']; ?>">
-            Switch to <?php echo $contact['type'] === 'Support' ? 'Sales Lead' : 'Support'; ?>
-        </button>
+    <button id="assign-to-me" onclick="assignToMe(<?php echo $contactId; ?>, <?php echo $currentUserId; ?>)">
+        Assign to me
+    </button>
+
+    <button id="switch-type" onclick="switchContactType(<?php echo $contactId; ?>, this)" data-current-type="<?php echo $contact['type']; ?>">
+        Switch to <?php echo $contact['type'] === 'Support' ? 'Sales Lead' : 'Support'; ?>
+    </button>
     </div>
 </div>
 
