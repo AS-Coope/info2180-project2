@@ -75,7 +75,7 @@ body {
 .side-panel {
   background: #333;
   width: 200px;
-  height: 100vh;
+  height: calc(100vh - 60px);
   float: left;
   padding-top: 20px; 
 }
@@ -116,6 +116,7 @@ body {
   margin-left: 200px; /* This should be the same as the side-panel width */
   padding: 20px; 
   background: #fff; 
+
 }
 
 h1 {
@@ -127,7 +128,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two equal columns */
   gap: 20px; /* Space between the grid items */
-  margin-bottom: 20px; /* Space below the grid container */
+  margin-bottom: 60px; /* Space below the grid container */
   
   }
 
@@ -173,4 +174,9 @@ button.save-button {
 
 button.save-button:hover {
   background-color: #0056b3; /* Darker background on hover */
+}
+
+button.save-button {
+  grid-column: 1 / -1; 
+  max-width: 100px;
 }

@@ -39,7 +39,7 @@ body {
 .side-panel {
   background: #333;
   width: 200px;
-  height: 100vh;
+  height: calc(100vh - 60px);
   float: left;
   padding-top: 20px; 
 }
@@ -94,7 +94,7 @@ margin-bottom: 20px; /* Space below the grid container */
   margin-left: 200px; /* This should be the same as the side-panel width */
   padding: 20px; 
   background: #fff; 
-  max-height: 100vh; /* Maximum height to match the viewport height */
+  max-height: 80vh; /* Maximum height to match the viewport height */
   overflow-y: auto; /* Enables vertical scrolling if content exceeds max height */
 }
 
