@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = test_input($_POST["password"]);
     
     // Prepare and bind
-    $stmt = $conn->prepare("SELECT id, firstname, lastname, password FROM Users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id, firstname, lastname, password, role FROM Users WHERE email = ?");
     $stmt->bind_param("s", $email);
 
     // Execute the query
@@ -31,9 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["loggedin"] = true;
             $_SESSION["id"] = $user['id'];
             $_SESSION["email"] = $email;
+            $_SESSION["role"] = $user['role']; // Store the role in the session
             
             // Redirect user to Dashboard
             header("Location: new_user.html");
+            exit;
         } else {
             // Display an error message if password is not valid
             echo "The password you entered was not valid.";
