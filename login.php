@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["role"] = $user['role']; // Store the role in the session
             
             // Redirect user to Dashboard
-            header("Location: new_user.html");
+            header("Location: dashboard.php");
             exit;
         } else {
             // Display an error message if password is not valid

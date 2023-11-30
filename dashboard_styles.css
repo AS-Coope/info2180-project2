@@ -1,0 +1,167 @@
+.add-user-button {
+    background-color: #007bff; /* Button background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    float: right; /* Position the button to the right */
+    margin: 20px 0; /* Spacing from the top of the table */
+}
+
+.add-user-button:hover {
+    background-color: #0056b3; /* Darker background on hover */
+}
+
+body {
+    font-family: 'Arial', sans-serif; 
+    background: #f4f4f4; 
+    margin: 0;
+    padding: 0;
+    padding-top: 40px; /* Added to account for the fixed top bar height */
+  
+  }
+  
+/* Filters section */
+.filters {
+  margin-left: 00px; /* Align with the side panel */
+  padding: 10px 20px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing between filter buttons */
+}
+
+.filters span {
+  font-weight: bold;
+  color: #333;
+}
+
+.filters button {
+  padding: 5px 15px;
+  background-color: #e7e7e7; /* Light grey background for filter buttons */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filters button:hover {
+  background-color: #d0d0d0; /* Slightly darker on hover */
+}
+
+.filters button.active {
+  background-color: #007bff; /* Active filter button background */
+  color: white;
+}
+
+/* Table for contacts */
+.contact-table {
+  margin-left: 00px; /* Align with the side panel */
+  margin-top: 20px; /* Spacing from the filters section */
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.contact-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.contact-table th,
+.contact-table td {
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.contact-table th {
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+/* View button */
+.contact-table button {
+  background-color: #5b9bd5; /* Button color */
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-table button:hover {
+  background-color: #4a8bc2; /* Darker shade on hover */
+}
+
+/* Responsive adjustments might be required for smaller screens */
+@media screen and (max-width: 768px) {
+  .side-panel,
+  .filters,
+  .contact-table {
+    margin-left: 0; /* Full width on smaller screens */
+  }
+
+  .fixed-header,
+  .scrollable-table {
+    left: 0;
+  }
+}
+
+.main-content {
+    margin-left: 200px; /* This should be the same as the side-panel width */
+    padding: 20px; 
+    background: #fff; 
+  }
+
+  #top-bar {
+    background-color: #333;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .side-panel {
+    background: #333;
+    width: 200px;
+    height: 100vh;
+    float: left;
+    padding-top: 20px; 
+  }
+  
+  .sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar-menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-menu li a:hover {
+    background-color: #555;
+  }
+  
+  .sidebar-menu li a i {
+    margin-right: 10px;
+  }
+  
+  .sidebar-menu li i {
+    width: 20px; /* Ensures that the icon has space to display */
+    min-width: 20px; /* Ensures that the icon does not shrink */
+    text-align: center; /* Centers the icon */
+    margin-right: 8px; /* Adds some space between the icon and the text */
+  }
+
