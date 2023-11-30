@@ -58,9 +58,10 @@ if (!isset($_SESSION['id'])) {
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="example@gmail.com" required autocomplete="email">
                 </div>
-                <div class="form-group">
+                <div class="form-group password-container">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                    <span id="toggle-password" class="eye-icon">👁️</span>
                 </div>
                 <div class="form-group">
                     <label for="role">Role</label>
@@ -75,5 +76,16 @@ if (!isset($_SESSION['id'])) {
         <div id="form-response"></div> <!-- Place to show the response message -->
     </div>
     <script src="new_user.js"></script>
+    <script>
+        document.getElementById('toggle-password').addEventListener('click', function () {
+            // Toggle the type attribute of the password field
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+    
+            // Toggle the eye icon
+            this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️'; // Update with appropriate icons
+        });
+    </script>
 </body>
 </html>

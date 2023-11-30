@@ -148,3 +148,23 @@ button.save-button {
 button.save-button:hover {
   background-color: #0056b3; /* Darker background on hover */
 }
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input[type="password"] {
+  flex-grow: 1; /* Ensure input field takes up available space */
+  padding-right: 30px; /* Provide space for the eye icon */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%; /* Align vertically */
+  transform: translateY(-50%); /* Center vertically */
+  cursor: pointer;
+  font-size: 18px; /* Adjust size as needed */
+}

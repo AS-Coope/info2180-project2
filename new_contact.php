@@ -51,12 +51,12 @@ if (!isset($_SESSION['id'])) {
                 <!-- First Name -->
                 <div class="form-group">
                     <label for="firstname">First Name</label>
-                    <input type="text" id="firstname" name="firstname" required>
+                    <input type="text" id="firstname" name="firstname" pattern="[A-Za-z ]+" title="Only alphabets and spaces are allowed" required>
                 </div>
                 <!-- Last Name -->
                 <div class="form-group">
                     <label for="lastname">Last Name</label>
-                    <input type="text" id="lastname" name="lastname" required>
+                    <input type="text" id="lastname" name="lastname" pattern="[A-Za-z ]+" title="Only alphabets and spaces are allowed" required>
                 </div>
                 <!-- Email -->
                 <div class="form-group">
@@ -66,17 +66,20 @@ if (!isset($_SESSION['id'])) {
                 <!-- Telephone -->
                 <div class="form-group">
                     <label for="telephone">Telephone</label>
-                    <input type="tel" id="telephone" name="telephone">
+                    <input type="tel" id="telephone" name="telephone" pattern="\d{10}" title="Telephone must be 10 digits" required>
                 </div>
                 <!-- Company -->
                 <div class="form-group">
                     <label for="company">Company</label>
-                    <input type="text" id="company" name="company">
+                    <input type="text" id="company" name="company" required>
                 </div>
                 <!-- Type -->
                 <div class="form-group">
                     <label for="type">Type</label>
-                    <input type="text" id="type" name="type">
+                    <select id="type" name="type" required>
+                        <option value="Sales Lead">Sales Lead</option>
+                        <option value="Support">Support</option>
+                    </select>
                 </div>
                 <!-- Assigned To -->
                 <div class="form-group">
