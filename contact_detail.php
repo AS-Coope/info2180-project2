@@ -7,7 +7,7 @@ if (!isset($_GET['id'])) {
 }
 
 $contactId = $_GET['id'];
-$currentUserId = $_SESSION['id']; // Make sure this is correctly set when the user logs in
+$currentUserId = $_SESSION['id']; 
 
 // Fetch the contact details
 $stmt = $conn->prepare("SELECT Contacts.*, CONCAT(Users.firstname, ' ', Users.lastname) AS created_by_name, Users2.firstname AS assigned_firstname, Users2.lastname AS assigned_lastname FROM Contacts LEFT JOIN Users ON Contacts.created_by = Users.id LEFT JOIN Users as Users2 ON Contacts.assigned_to = Users2.id WHERE Contacts.id = ?");
@@ -21,7 +21,7 @@ if (!$contact) {
 }
 
 // Fetch the notes for the contact
-$notesStmt = $conn->prepare("SELECT Notes.*, CONCAT(Users.firstname, ' ', Users.lastname) AS author_name FROM Notes JOIN Users ON Notes.created_by = Users.id WHERE contact_id = ? ORDER BY Notes.created_at DESC");
+$notesStmt = $conn->prepare("SELECT Notes.*, CONCAT(Users.firstname, ' ', Users.lastname) AS author_name FROM Notes JOIN Users ON Notes.created_by = Users.id WHERE contact_id = ? ORDER BY Notes.created_at ASC");
 $notesStmt->bind_param("i", $contactId);
 $notesStmt->execute();
 $notesResult = $notesStmt->get_result();
@@ -57,23 +57,40 @@ $conn->close();
         
     <div class="contact-details-header">
     <div>
-        <h1><?php echo htmlspecialchars($contact['title'] . ' ' . $contact['firstname'] . ' ' . $contact['lastname']); ?></h1>
-        <p>Created on <?php echo htmlspecialchars($contact['created_at']); ?> by <?php echo htmlspecialchars($contact['created_by_name']); ?></p>
-        <p>Updated on <?php echo htmlspecialchars($contact['updated_at']); ?></p>
+    <img src="blank.png" alt="Profile Picture" class="contact-image" />
+        <div>
+            <h1><?php echo htmlspecialchars($contact['title'] . ' ' . $contact['firstname'] . ' ' . $contact['lastname']); ?></h1>
+            <p>Created on <?php echo htmlspecialchars($contact['created_at']); ?> by <?php echo htmlspecialchars($contact['created_by_name']); ?></p>
+            <p>Updated on <?php echo htmlspecialchars($contact['updated_at']); ?></p>
+        </div>
     </div>
     <div class="contact-details-actions">
         <button id="assign-to-me" onclick="assignToMe(<?php echo $contactId; ?>, <?php echo $currentUserId; ?>)">Assign to me</button>
-        <button id="switch-type" onclick="switchContactType(<?php echo $contactId; ?>, '<?php echo $contact['type']; ?>')">Switch to <?php echo $contact['type'] === 'Support' ? 'Sales Lead' : 'Support'; ?></button>
+        <button id="switch-type" onclick="switchContactType(<?php echo $contactId; ?>, this)" data-current-type="<?php echo $contact['type']; ?>">
+            Switch to <?php echo $contact['type'] === 'Support' ? 'Sales Lead' : 'Support'; ?>
+        </button>
     </div>
 </div>
 
-        <div class="contact-details-body">
-            <p>Email: <?php echo htmlspecialchars($contact['email']); ?></p>
-            <p>Telephone: <?php echo htmlspecialchars($contact['telephone']); ?></p>
-            <p>Company: <?php echo htmlspecialchars($contact['company']); ?></p>
-            <p>Assigned To: <?php echo htmlspecialchars($contact['assigned_firstname'] . ' ' . $contact['assigned_lastname']); ?></p>
-        </div>
 
+<div class="contact-details-body">
+    <div class="form-field">
+        <label for="email">Email:</label>
+        <p id="email"><?php echo htmlspecialchars($contact['email']); ?></p>
+    </div>
+    <div class="form-field">
+        <label for="telephone">Telephone:</label>
+        <p id="telephone"><?php echo htmlspecialchars($contact['telephone']); ?></p>
+    </div>
+    <div class="form-field">
+        <label for="company">Company:</label>
+        <p id="company"><?php echo htmlspecialchars($contact['company']); ?></p>
+    </div>
+    <div class="form-field">
+        <label for="Assigned_to">Assigned To:</label>
+        <p id="Assigned_to"><?php echo htmlspecialchars($contact['assigned_firstname'] . ' ' . $contact['assigned_lastname']); ?></p>
+    </div>
+    </div>
         <div class="contact-details-notes">
             <h2>Notes</h2>
             <?php while($note = $notesResult->fetch_assoc()): ?>
@@ -84,26 +101,91 @@ $conn->close();
                 </div>
             <?php endwhile; ?>
             <form id="add-note-form">
+                <input type="hidden" name="contactId" id="contact-id" value="<?php echo $contactId; ?>" />
                 <textarea name="comment" id="note-comment" placeholder="Add a note about <?php echo htmlspecialchars($contact['firstname']); ?>"></textarea>
                 <button type="submit">Add Note</button>
             </form>
+
         </div>
     </div>
 
     <script>
         function assignToMe(contactId, currentUserId) {
-            // AJAX call to assign the contact to the current user
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'assign_contact.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert('Contact assigned successfully');
+                    // Optionally, refresh the page or update the UI to reflect the change
+                } else {
+                    alert('Error assigning contact');
+                }
+            };
+            xhr.send('contactId=' + contactId + '&currentUserId=' + currentUserId);
+}
+
+        function switchContactType(contactId, button) {
+            var currentType = button.getAttribute('data-current-type');
+            var newType = currentType === 'Support' ? 'Sales Lead' : 'Support';
+            var params = 'contactId=' + contactId + '&newType=' + newType;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'switch_contact_type.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Update the button text and data attribute
+                    button.textContent = 'Switch to ' + (newType === 'Support' ? 'Sales Lead' : 'Support');
+                    button.setAttribute('data-current-type', newType);
+                    alert('Contact type updated to ' + newType);
+                } else {
+                    alert('Error updating contact type');
+                }
+            };
+            xhr.send(params);
         }
 
-        function switchContactType(contactId, currentType) {
-            // AJAX call to switch the contact's type
-        }
 
         document.getElementById('add-note-form').addEventListener('submit', function(e) {
             e.preventDefault();
             var comment = document.getElementById('note-comment').value;
-            // AJAX call to add the note
+            var contactId = document.getElementById('contact-id').value;
+
+            if (comment.trim() === '') {
+                alert('Please enter a note.');
+                return;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'add_note.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if(response.success) {
+                        var notesContainer = document.getElementById('notes-container');
+                        var newNoteDiv = document.createElement('div');
+                        newNoteDiv.className = 'note';
+                        newNoteDiv.innerHTML = `
+                            <p><strong>${response.authorName}</strong> <em>${response.createdAt}</em></p>
+                            <p>${comment}</p>
+                        `;
+                        notesContainer.appendChild(newNoteDiv); // Append to the end of the container
+                        document.getElementById('note-comment').value = '';
+                    } else {
+                        alert(response.error);
+                    }
+                } else {
+                    alert('Error adding note.');
+                }
+            };
+            var data = 'contactId=' + encodeURIComponent(contactId) + '&comment=' + encodeURIComponent(comment);
+            xhr.send(data);
         });
+
+
+
     </script>
 </body>
 </html>

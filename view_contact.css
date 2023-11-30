@@ -78,6 +78,7 @@ body {
 
 
 .contact-details-container {
+  
     margin-left: 200px;
     padding: 20px;
     background: white;
@@ -85,61 +86,38 @@ body {
     box-sizing: border-box;
 }
 
-.contact-details-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+
+.contact-details-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 20px; /* Adds space inside the container */
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 15px; /* Rounded corners */
+  background-color: #fff; /* Optional: Change if you want a different background color */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow for depth */
+  margin-bottom: 20px; /* Space below the container */
 }
 
-.contact-details-header h1 {
-    margin: 0;
-    color: #333;
-    flex: 1; /* Allows the title to take up the available space */
+.form-field {
+  display: flex;
+  flex-direction: column;
 }
 
-.contact-details-actions {
-    display: flex;
-    gap: 10px; /* Adds space between buttons */
-    flex-shrink: 0; /* Prevents the buttons from shrinking */
+.form-field label {
+  color: #888; /* Lighter gray for labels */
+  margin-bottom: 5px; /* Spacing between label and text */
 }
 
-/* If you want the buttons to be vertically centered with the title, make sure the title container is a flex container as well */
-.contact-details-header > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.form-field p {
+  color: black; /* Black for text */
+  margin: 0; /* Adjust as needed */
 }
 
-.contact-details-body p {
-    margin: 10px 0;
-    color: #666;
-}
 
-.contact-details-actions {
-    margin: 20px 0;
-    
-}
 
-.contact-details-actions button {
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-}
 
-.contact-details-actions button#switch-type {
-    background-color: #f0ad4e;
-}
 
-.contact-details-actions button:hover {
-    opacity: 0.9;
-}
 
 .contact-details-notes {
     background: #f9f9f9;
@@ -192,3 +170,62 @@ body {
     }
 }
 
+
+.contact-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Aligns items to the top */
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.contact-details-header > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1; /* Ensures this container takes up available space, pushing buttons to the right */
+}
+
+.contact-details-header div:first-child {
+  flex-direction: row; /* Aligns the image and text side by side */
+  align-items: center; /* Centers them vertically */
+}
+
+.contact-details-header div:first-child img {
+  margin-right: 10px; /* Space between image and text */
+  height: 50px; /* Adjust as needed */
+}
+
+.contact-details-header h1, .contact-details-header p {
+  margin: 0;
+  color: #333;
+}
+
+.contact-details-actions {
+  display: flex;
+  gap: 10px; /* Adds space between buttons */
+}
+
+.contact-details-actions button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contact-details-actions button#switch-type {
+  background-color: #f0ad4e;
+}
+
+.contact-details-actions button:hover {
+  opacity: 0.9;
+}
+
+.contact-image {
+  width: 50px; 
+  height: auto; 
+  border-radius: 50%; 
+}

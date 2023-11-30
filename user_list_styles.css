@@ -6,51 +6,71 @@ body {
 }
 
 #top-bar {
-    background-color: #333;
-    height: 40px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-  }
+  background-color: #333;
+  color: white;
+  height: 40px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container .logo {
+  height: 30px; /* Or any other size that fits well */
+  margin-right: 10px;
+}
+
+.logo-container .top-bar-title {
+  font-size: 20px; /* Or the size you prefer */
+}
   
-  .side-panel {
-    background: #333;
-    width: 200px;
-    height: 100vh;
-    float: left;
-    padding-top: 20px; 
-  }
-  
-  .sidebar-menu {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .sidebar-menu li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
-    transition: all 0.3s ease;
-  }
-  
-  .sidebar-menu li a:hover {
-    background-color: #555;
-  }
-  
-  .sidebar-menu li a i {
-    margin-right: 10px;
-  }
-  
-  .sidebar-menu li i {
-    width: 20px; /* Ensures that the icon has space to display */
-    min-width: 20px; /* Ensures that the icon does not shrink */
-    text-align: center; /* Centers the icon */
-    margin-right: 8px; /* Adds some space between the icon and the text */
-  }
+.side-panel {
+  background: #333;
+  width: 200px;
+  height: 100vh;
+  float: left;
+  padding-top: 20px; 
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #555;
+}
+
+.sidebar-menu li a i {
+  margin-right: 10px;
+}
+
+.sidebar-menu li i {
+  width: 20px; /* Ensures that the icon has space to display */
+  min-width: 20px; /* Ensures that the icon does not shrink */
+  text-align: center; /* Centers the icon */
+  margin-right: 8px; /* Adds some space between the icon and the text */
+}
+
+
 .main-content {
     margin-left: 0px;
     padding: 20px;
@@ -129,6 +149,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 40px; /* Adds 40px padding to the top of the fixed-header container */
+  color: #333; 
+
 }
 
 .scrollable-table {

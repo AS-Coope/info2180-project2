@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <div id="top-bar"></div> <!-- Horizontal bar at the top -->
+<div id="top-bar">
+    <div class="logo-container">
+        <img src="dolphin.png" alt="Dolphin CRM Logo" class="logo">
+        <span class="top-bar-title">Dolphin CRM</span>
+    </div>
+</div>
     <div class="side-panel">
         <ul class="sidebar-menu">
             <li><a href="dashboard.php"><i class="fas fa-home"></i> Home</a></li>

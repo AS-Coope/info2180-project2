@@ -12,13 +12,32 @@ body {
 
 /* Top bar styling */
 .top-bar {
+    padding-top:5px;
+    display: flex;
     background-color: #333;
-    height: 40px;
+    height: 50px;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
+    color: white; 
+    
+}
+
+.logo-container {
+    padding-left:10px;
+    margin-right: 0px; /* Space between logo and text */
+}
+
+.logo {
+    padding-top: 5px;
+    height: 30px; 
+}
+
+.title-container {
+    margin-left: 0px; /* Space between logo and text */
+    padding-top:10px;
 }
 
 /* Container for the login form */

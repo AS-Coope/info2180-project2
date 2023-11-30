@@ -120,15 +120,40 @@ body {
     background: #fff; 
   }
 
+  h2 {
+    color: #333; 
+
+  }
+  
   #top-bar {
     background-color: #333;
+    color: white;
     height: 40px;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
   }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-container .logo {
+    height: 30px; /* Or any other size that fits well */
+    margin-right: 10px;
+  }
+  
+  .logo-container .top-bar-title {
+    font-size: 20px; /* Or the size you prefer */
+  }
+  
+
   
   .side-panel {
     background: #333;

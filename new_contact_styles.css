@@ -9,13 +9,32 @@ body {
 
 #top-bar {
   background-color: #333;
+  color: white;
   height: 40px;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
 }
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container .logo {
+  height: 30px; /* Or any other size that fits well */
+  margin-right: 10px;
+}
+
+.logo-container .top-bar-title {
+  font-size: 20px; /* Or the size you prefer */
+}
+
 
 .side-panel {
   background: #333;
@@ -54,8 +73,12 @@ body {
   margin-right: 8px; /* Adds some space between the icon and the text */
 }
 
+
+
+
 .title-dropdown {
     grid-column: 1 / -1; /* Makes the title dropdown span all columns in the grid */
+    max-width: 70px;
   }
   
 .form-container {
@@ -81,8 +104,10 @@ h1 {
 }
 
 .form-group {
+  width: 450px; /* Or any fixed width you prefer */
   margin-bottom: 20px; /* Spacing between form groups */
 }
+
 
 label {
   display: block;
@@ -93,6 +118,7 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="tel"],
 select {
   width: 100%; /* Full width */
   padding: 10px; 

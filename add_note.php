@@ -6,7 +6,7 @@ require 'db.php';
 if (isset($_POST['contactId'], $_POST['comment']) && !empty($_POST['comment'])) {
     $contactId = $_POST['contactId'];
     $comment = trim($_POST['comment']);
-    $createdBy = $_SESSION['id']; // Replace 'userid' with the actual session variable name
+    $createdBy = $_SESSION['id']; 
 
     // Sanitize and prepare the SQL statement
     $comment = $conn->real_escape_string($comment);
@@ -21,7 +21,7 @@ if (isset($_POST['contactId'], $_POST['comment']) && !empty($_POST['comment'])) 
         $response = [
             'success' => true,
             'authorName' => $_SESSION['username'], 
-            'createdAt' => date('Y-m-d H:i:s') // This should match the format you're using in the UI
+            'createdAt' => date('Y-m-d H:i:s') 
         ];
     } else {
         $response = [
