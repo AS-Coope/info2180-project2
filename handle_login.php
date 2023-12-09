@@ -45,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Display an error message if email doesn't exist
         echo "No account found with that email.";
+        header("Location: login.php");
+        exit;
     }
 
     // Close statement
