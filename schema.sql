@@ -42,4 +42,4 @@ CREATE TABLE IF NOT EXISTS Notes (
 );
 
 INSERT INTO Users (firstname, lastname, password, email, role, created_at)
-VALUES ('Admin', 'User', 'password123', 'admin@project2.com', 'admin', NOW());
+VALUES ('Admin', 'User', 'password123', 'admin@project2.com', 'Admin', NOW());
