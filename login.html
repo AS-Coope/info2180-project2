@@ -1,20 +1,12 @@
-<?php
-session_start();
-require 'db.php'; // Include database connection
-
-// Check if the user is already logged in, if yes then redirect to dashboard
-if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("Location: dashboard.php");
-    exit;
-}
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="assets/css/loginstyles.css">
 </head>
+
 <body>
     <div class="top-bar">
         <div class="logo-container">
@@ -49,11 +41,12 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             const passwordInput = document.getElementById('password');
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-    
+
             // Toggle the eye icon
-            this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️'; 
+            this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
         });
     </script>
-    
+
 </body>
+
 </html>
