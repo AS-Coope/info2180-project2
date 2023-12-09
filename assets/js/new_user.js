@@ -1,4 +1,4 @@
-document.getElementById('submit-button').addEventListener('click', function() {
+document.getElementById('submit-button').addEventListener('click', function () {
     var form = document.getElementById('new-user-form');
     var formData = new FormData(form);
     var xhr = new XMLHttpRequest();
