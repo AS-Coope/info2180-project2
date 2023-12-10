@@ -45,6 +45,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         </footer>
     </div>
 
+   <script src="assets/js/validation.js" type="text/javascript"></script>
+
     <script>
         document.getElementById('toggle-password').addEventListener('click', function (e) {
             // Toggle the type attribute using getAttribute() and setAttribute()
