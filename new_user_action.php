@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = $conn->real_escape_string($_POST['role']);
 
     // Password validation
-    /*
+  
     if (!preg_match("/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/", $password)) {
         echo "Password must be at least 8 characters long and include at least one number and one uppercase letter.";
         exit;
@@ -19,13 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Hash the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-*/
     // Prepare an SQL statement to prevent SQL injection
     $stmt = $conn->prepare("INSERT INTO Users (firstname, lastname, password, email, role, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
     
     // Bind the parameters to the SQL query
-    //$stmt->bind_param("sssss", $firstname, $lastname, $hashed_password, $email, $role);
-    $stmt->bind_param("sssss", $firstname, $lastname, $password, $email, $role);
+    $stmt->bind_param("sssss", $firstname, $lastname, $hashed_password, $email, $role);
+    //$stmt->bind_param("sssss", $firstname, $lastname, $password, $email, $role);
     
     // Execute the query
     if ($stmt->execute()) {
