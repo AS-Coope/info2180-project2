@@ -110,26 +110,122 @@ if (!isset($_SESSION['id'])) {
     </div>
 
 <script>
-    document.getElementById('new-contact-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevents the default form submission
+    // create variables where necessary
+    const newContactForm = document.getElementById('new-contact-form');
+    var saveMessage = document.getElementById('save-message');
 
-        var formData = new FormData(this);
-        var xhr = new XMLHttpRequest();
+    const newContactTitle = document.getElementById('title');
+    const newContactFName = document.getElementById('firstname');
+    const newContactLName = document.getElementById('lastname');
+    const newContactEmail = document.getElementById('email');
+    const newContactTel = document.getElementById('telephone');
+    const newContactComp = document.getElementById('company');
+    const newContactType = document.getElementById('type');
+    const newContactAsgnTo = document.getElementById('assigned_to');
+
+    // create regexes where necessary
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const telRegex = /\d{10}/;
+    //const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+    const nameRegex = /[A-Za-z ]+/;
+
+    // create validate function
+    function validateNewContactForm() {
+
+        // validates all input for new user
+
+        // name checks
+        if (!(newContactFName.value.trim() !== '')) {
+            alert("Please enter a valid First Name. The input is empty.");
+            return false;
+        }
+
+        if (!nameRegex.test(newContactFName.value)) {
+            alert("Please enter a name with only letters.");
+            return false;
+        }
+
+        if (!(newContactLName.value.trim() !== '')) {
+            alert("Please enter a valid Last Name. The input is empty.");
+            return false;
+        }
+
+        if (!nameRegex.test(newContactLName.value)) {
+            alert("Please enter a name with only letters.");
+            return false;
+        }
+
+        // email checks
+        if (!(newContactEmail.value.trim() !== '')) {
+            alert("Please enter a valid Email Address. The input is empty.");
+            return false;
+        }
+        if (!emailRegex.test(newContactEmail.value)) {
+            alert("Please enter the email according to the following format: example@gmail.com");
+            return false;
+        }
+
+        //company check
+        if (!(newContactComp.value.trim() !== '')) {
+            alert("Please enter a valid Company Name. The input is empty.");
+            return false;
+        }
+
+        //telephone checks
+        if (newContactTel.value.length < 10) {
+            alert("Please ensure the telephone number is at least 10 digits long.");
+            return false;
+        }
+        if (!(newContactTel.value.trim() !== '')) {
+            alert("Please enter a valid Telephone Number. The input is empty.");
+            return false;
+        }
+        if (!telRegex.test(newContactTel.value)) {
+            alert("Please ensure the password is of the format: ##########, where # is a digit");
+            return false;
+        }
+
+        return true;
+    }
+
+    // create post function
+    function postNewContact(){
+        const newContactFormData = new FormData();
+        newContactFormData.append('title', newContactTitle.value);
+        newContactFormData.append('firstname', newContactFName.value.trim());
+        newContactFormData.append('lastname', newContactLName.value.trim());
+        newContactFormData.append('email', newContactEmail.value.trim());
+        newContactFormData.append('telephone', newContactTel.value.trim());
+        newContactFormData.append('company', newContactComp.value.trim());
+        newContactFormData.append('type', newContactType.value);
+        newContactFormData.append('assigned_to', newContactAsgnTo.value);
+
+        const xhr = new XMLHtmlRequest();
         xhr.open('POST', 'new_contact_action.php', true);
 
         xhr.onload = function () {
             if (xhr.status === 200) {
                 // Clear the form fields
-                document.getElementById('new-contact-form').reset();
+                newContactForm.reset();
                 // Display the success message
-                document.getElementById('save-message').innerText = 'Contact saved successfully.';
+                saveMessage.innerText = 'Contact saved successfully.';
             } else {
                 // Handle errors here
-                document.getElementById('save-message').innerText = 'Error saving contact.';
+                saveMessage.innerText = 'Error saving contact.';
             }
         };
 
         xhr.send(formData);
+
+    }
+    
+    newContactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission
+
+        if(validateNewContactForm()) {
+            postNewContact();
+        }
+        
     });
 
 </script>
