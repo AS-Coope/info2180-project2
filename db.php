@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost"; 
 $username = "root";
-$password = "root"; // remove root as password
+$password = "";
 $dbname = "dolphin_crm";
 
 // Create connection
