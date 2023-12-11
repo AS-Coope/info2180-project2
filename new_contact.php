@@ -52,26 +52,31 @@ if (!isset($_SESSION['id'])) {
                 <div class="form-group">
                     <label for="firstname">First Name</label>
                     <input type="text" id="firstname" name="firstname" pattern="[A-Za-z ]+" title="Only alphabets and spaces are allowed" required>
+                    <div id="firstname-message"></div>
                 </div>
                 <!-- Last Name -->
                 <div class="form-group">
                     <label for="lastname">Last Name</label>
                     <input type="text" id="lastname" name="lastname" pattern="[A-Za-z ]+" title="Only alphabets and spaces are allowed" required>
+                    <div id="lastname-message"></div>
                 </div>
                 <!-- Email -->
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                    <div id="email-message"></div>
                 </div>
                 <!-- Telephone -->
                 <div class="form-group">
                     <label for="telephone">Telephone</label>
                     <input type="tel" id="telephone" name="telephone" pattern="\d{10}" title="Telephone must be 10 digits" required>
+                    <div id="telephone-message"></div>
                 </div>
                 <!-- Company -->
                 <div class="form-group">
                     <label for="company">Company</label>
                     <input type="text" id="company" name="company" required title="Enter company name">
+                    <div id="company-message"></div>
                 </div>
                 <!-- Type -->
                 <div class="form-group">
@@ -113,6 +118,11 @@ if (!isset($_SESSION['id'])) {
     // create variables where necessary
     const newContactForm = document.getElementById('new-contact-form');
     var saveMessage = document.getElementById('save-message');
+    var fNameMessage = document.getElementById('firstname-message');
+    var lNameMessage = document.getElementById('lastname-message');
+    var emailMessage = document.getElementById('email-message');
+    var telephoneMessage = document.getElementById('telephone-message');
+    var companyMessage = document.getElementById('company-message');
 
     const newContactTitle = document.getElementById('title');
     const newContactFName = document.getElementById('firstname');
@@ -136,54 +146,59 @@ if (!isset($_SESSION['id'])) {
 
         // name checks
         if (!(newContactFName.value.trim() !== '')) {
-            alert("Please enter a valid First Name. The input is empty.");
+            fNameMessage.innerText = "Please enter a valid First Name. The input is empty.");
             return false;
         }
-
         if (!nameRegex.test(newContactFName.value)) {
-            alert("Please enter a name with only letters.");
+            fNameMessage.innerText = "Please enter a name with only letters.";
             return false;
         }
+        fNameMessage.innerText = '';
 
         if (!(newContactLName.value.trim() !== '')) {
-            alert("Please enter a valid Last Name. The input is empty.");
+            lNameMessage.innerText = "Please enter a valid Last Name. The input is empty.";
             return false;
         }
 
         if (!nameRegex.test(newContactLName.value)) {
-            alert("Please enter a name with only letters.");
+            lNameMessage.innerText = "Please enter a name with only letters.";
             return false;
         }
+        lNameMessage.innerText = '';
 
         // email checks
         if (!(newContactEmail.value.trim() !== '')) {
-            alert("Please enter a valid Email Address. The input is empty.");
+            emailMessage.innerText = "Please enter a valid Email Address. The input is empty.";
             return false;
         }
         if (!emailRegex.test(newContactEmail.value)) {
-            alert("Please enter the email according to the following format: example@gmail.com");
+            emailMessage.innerText = "Please enter the email according to the following format: example@gmail.com";
             return false;
         }
+        emailMessage.innerText = '';
+
 
         //company check
         if (!(newContactComp.value.trim() !== '')) {
-            alert("Please enter a valid Company Name. The input is empty.");
+            companyMessage.innerText = "Please enter a valid Company Name. The input is empty.";
             return false;
         }
+        companyMessage.innerText = '';
 
         //telephone checks
         if (newContactTel.value.length < 10) {
-            alert("Please ensure the telephone number is at least 10 digits long.");
+            telephoneMessage.innerText = "Please ensure the telephone number is at least 10 digits long.";
             return false;
         }
         if (!(newContactTel.value.trim() !== '')) {
-            alert("Please enter a valid Telephone Number. The input is empty.");
+            telephoneMessage.innerText = "Please enter a valid Telephone Number. The input is empty.";
             return false;
         }
         if (!telRegex.test(newContactTel.value)) {
-            alert("Please ensure the password is of the format: ##########, where # is a digit");
+            telephoneMessage.innerText = "Please ensure the password is of the format: ##########, where # is a digit";
             return false;
         }
+        telephoneMessage.innerText = ''
 
         return true;
     }
