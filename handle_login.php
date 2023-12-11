@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query
     $stmt->execute();
+    
     $result = $stmt->get_result();
 
     $hashed_pw = password_hash($password, PASSWORD_DEFAULT);
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         // Check if the password matches
         $user = $result->fetch_assoc();
-        if (true /*password_verify($password, trim($user['password']))*/) {
+        if (password_verify($password, ($user['password']))) {
             // Password is correct, so start a new session
             $_SESSION["loggedin"] = true;
             $_SESSION["id"] = $user['id'];
@@ -56,4 +57,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Close connection
 $conn->close();
+
 ?>
