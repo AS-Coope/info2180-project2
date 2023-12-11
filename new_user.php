@@ -26,6 +26,7 @@ if (!isset($_SESSION['id'])) {
     <title>Add New User - Dolphin CRM</title>
     <link rel="stylesheet" href="assets/css/new_userstyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="assets/js/new_user.js" defer></script>
 </head>
 <body>
     <div id="top-bar">
@@ -76,7 +77,6 @@ if (!isset($_SESSION['id'])) {
         </div>
         
     </div>
-    <script src="assets/js/new_user.js"></script>
     <script>
         document.getElementById('toggle-password').addEventListener('click', function () {
             // Toggle the type attribute of the password field
