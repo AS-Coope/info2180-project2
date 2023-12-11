@@ -61,7 +61,7 @@ if (!isset($_SESSION['id'])) {
                 <!-- Email -->
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
                 </div>
                 <!-- Telephone -->
                 <div class="form-group">
@@ -71,7 +71,7 @@ if (!isset($_SESSION['id'])) {
                 <!-- Company -->
                 <div class="form-group">
                     <label for="company">Company</label>
-                    <input type="text" id="company" name="company" required>
+                    <input type="text" id="company" name="company" required title="Enter company name">
                 </div>
                 <!-- Type -->
                 <div class="form-group">
@@ -218,7 +218,7 @@ if (!isset($_SESSION['id'])) {
         xhr.send(formData);
 
     }
-    
+
     newContactForm.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevents the default form submission
 
