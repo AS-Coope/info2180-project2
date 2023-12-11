@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return false;
         }
 
-        // Password must be at least 8 characters long with atleast 1 digit
+        // Password must be at least 8 characters long with at least 1 digit
         const passwordRegex = /^(?=.*\d).{8,}$/;
         if (password.length < 8) {
             alert('Password must be at least 8 characters long.');
@@ -53,11 +53,11 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
-                    // Handle successful response (you can customize this part)
+                    // Handle successful response
 
                     window.location.href = 'dashboard.php'; // Redirect to the dashboard page
                 } else {
-                    // Handle error response (you can customize this part)
+                    // Handle error response 
                     alert('Login failed. ' + xhr.responseText);
                 }
             }
