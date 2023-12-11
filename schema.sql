@@ -1,3 +1,5 @@
+DROP DATABASE dolphin_crm;
+DROP TABLE Users;
 CREATE DATABASE IF NOT EXISTS dolphin_crm;
 USE dolphin_crm;
 
@@ -42,4 +44,4 @@ CREATE TABLE IF NOT EXISTS Notes (
 );
 
 INSERT INTO Users (firstname, lastname, password, email, role, created_at)
-VALUES ('Admin', 'User', 'password123', 'admin@project2.com', 'Admin', NOW());
+VALUES ('Admin', 'User', '$2y$10$SfRQpUd4TUjN.E6zvcFWcew0km8Xg/XJC.hElK3IZ9CAX6NOj1avu', 'admin@project2.com', 'Admin', NOW());
